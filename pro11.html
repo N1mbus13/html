@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Student</title>
+  <style>
+    body{text-align:center;font-family:Arial}
+    .box{width:300px;margin:70px auto;padding:15px;border:2px solid #000;background:lightgrey}
+    input{width:90%;margin:5px;padding:5px}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h3>Search Student</h3>
+    <form action="search.php" method="post">
+      Enter Student ID:<br>
+      <input type="text" name="sid" required><br><br>
+      <input type="submit" value="Search">
+    </form>
+  </div>
+</body>
+</html>
+
+<?php
+$conn = mysqli_connect("localhost","root","","student_db");
+if(!$conn) die("Connection Failed");
+
+$sid = $_POST['sid'];
+
+$sql = "SELECT * FROM students WHERE student_id='$sid'";
+$res = mysqli_query($conn, $sql);
+
+echo "<center><h3>Student Details</h3>";
+
+if(mysqli_num_rows($res) > 0){
+    echo "<table border='1' cellpadding='8'>
+            <tr>
+              <th>ID</th><th>Name</th><th>Mobile</th><th>Course</th><th>University</th>
+            </tr>";
+    
+    while($r = mysqli_fetch_assoc($res)){
+        echo "<tr>
+                <td>{$r['student_id']}</td>
+                <td>{$r['student_name']}</td>
+                <td>{$r['mobile_no']}</td>
+                <td>{$r['course']}</td>
+                <td>{$r['university']}</td>
+              </tr>";
+    }
+    
+    echo "</table>";
+} 
+else {
+    echo "<p>No record found!</p>";
+}
+
+echo "</center>";
+mysqli_close($conn);
+?>

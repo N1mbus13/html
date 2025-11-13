@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Navigator Properties</title>
+  <script>
+    function showInfo() {
+      document.getElementById("data").innerHTML = `
+        <tr><td>App Name</td><td>${navigator.appName}</td></tr>
+        <tr><td>App Version</td><td>${navigator.appVersion}</td></tr>
+        <tr><td>Platform</td><td>${navigator.platform}</td></tr>
+        <tr><td>User Agent</td><td>${navigator.userAgent}</td></tr>
+        <tr><td>Language</td><td>${navigator.language}</td></tr>
+      `;
+    }
+  </script>
+</head>
+<body onload="showInfo()">
+<center>
+  <h3>Navigator Properties</h3>
+  <table border="1" cellpadding="8" style="border-collapse:collapse;">
+    <thead>
+      <tr style="background:lightgrey;">
+        <th>Property</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody id="data"></tbody>
+  </table>
+</center>
+</body>
+</html>

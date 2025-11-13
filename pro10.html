@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Info</title>
+  <style>
+    body{text-align:center;font-family:Arial}
+    .box{width:300px;margin:50px auto;padding:15px;border:2px solid #000;background:lightgrey}
+    input{width:90%;margin:6px;padding:5px}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h3>Student Information</h3>
+    <form action="connect.php" method="post">
+      ID:<input name="sid" required><br>
+      Name:<input name="sname" required><br>
+      Reg No:<input name="reg" required><br>
+      Course:<input name="course"><br>
+      University:<input name="uni"><br><br>
+      <input type="submit" value="Save">
+    </form>
+  </div>
+</body>
+</html>
+
+
+PHP
+
+<?php
+$conn = mysqli_connect("localhost","root","","student_db");
+if(!$conn) die("Connection failed");
+
+$sid=$_POST['sid'];
+$sname=$_POST['sname'];
+$reg=$_POST['reg'];
+$course=$_POST['course'];
+$uni=$_POST['uni'];
+
+$q="INSERT INTO students(student_id,student_name,register_no,course,university)
+    VALUES('$sid','$sname','$reg','$course','$uni')";
+
+if(mysqli_query($conn,$q))
+  echo "<center><h3>Record Saved Successfully!</h3></center>";
+else
+  echo "Error: ".mysqli_error($conn);
+
+mysqli_close($conn);
+?>

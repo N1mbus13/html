@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Update Employee Info</title>
+  <style>
+    body{text-align:center;font-family:Arial}
+    .box{
+      width:300px;margin:70px auto;padding:15px;
+      border:2px solid #000;background:lightgrey
+    }
+    input{width:90%;margin:5px;padding:5px}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h3>Update Employee Info</h3>
+    <form action="update.php" method="post">
+
+      Employee ID:<br>
+      <input type="text" name="empid" required><br>
+
+      Employee Name:<br>
+      <input type="text" name="empname" required><br>
+
+      Designation:<br>
+      <input type="text" name="empdesig"><br>
+
+      Salary:<br>
+      <input type="text" name="empsal"><br><br>
+
+      <input type="submit" value="Update">
+    </form>
+  </div>
+</body>
+</html>
+
+
+<?php
+$id = $_POST["empid"];
+$name = $_POST["empname"];
+$desig = $_POST["empdesig"];
+$salary = $_POST['empsal'];
+
+$conn = mysqli_connect("localhost", "root", "", "employee_db");
+
+if(!$conn) {
+die("Connection error ".mysqli_connect_error());
+}
+$sql = "UPDATE employee_info SET employee_id = '$id', employee_name = '$name', employee_desig = '$desig', employee_salary ='$salary' Where employee_id = '$id'";
+
+if(mysqli_query($conn, $sql)) {
+echo "<center><h1>Record Updated</h1></center>";
+} else {
+echo "<h1>".$conn->error."</h1>";
+}
+
+$conn->close();
+?>

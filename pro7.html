@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Event Propagation</title>
+  <style>
+    body { text-align:center; font-family:Arial; }
+    .box { border:2px solid; margin:10px; padding:20px;  cursor:pointer; }
+    .outer { border-color:green; }
+    .middle { border-color:orange; }
+    .inner { border-color:red; }
+  </style>
+</head>
+<body>
+  <h3>Event Propagation</h3>
+
+  <div class="box outer" id="outer">Outer
+    <div class="box middle" id="middle">Middle
+      <div class="box inner" id="inner">Inner</div>
+    </div>
+  </div>
+
+  <script>
+    ["outer","middle","inner"].forEach(id => {
+      document.getElementById(id).onclick = () => alert(id + " clicked");
+    });
+  </script>
+</body>
+</html>

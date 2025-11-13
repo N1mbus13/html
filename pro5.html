@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EMI Calculator</title>
+</head>
+<body>
+  <h2>EMI Calculator</h2>
+  <p>Calculate your monthly EMI easily!</p>
+
+  <form>
+    Loan Amount (₹): <input type="number" id="loanAmount" placeholder="Enter amount" required><br><br>
+    Interest Rate (% per annum): <input type="number" id="interestRate" step="0.01" placeholder="Enter rate" required><br><br>
+    Loan Tenure (years): <input type="number" id="loanTenure" placeholder="Enter years" required><br><br>
+    <input type="button" value="Calculate EMI" onclick="calculateEMI()">
+  </form>
+  <h3 id="result"></h3>
+  <footer>
+    <p>&copy; 2025 CMR University | EMI Calculator</p>
+  </footer>
+
+  <script>
+    function calculateEMI() {
+      let loanAmount = +document.getElementById("loanAmount").value,
+          interestRate = +document.getElementById("interestRate").value,
+          loanTenure = +document.getElementById("loanTenure").value;
+      let monthlyRate = (interestRate / 12) / 100,
+          months = loanTenure * 12,
+          emi = (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months)) /
+                (Math.pow(1 + monthlyRate, months) - 1);
+      document.getElementById("result").innerText = "Your Monthly EMI is ₹ " + emi.toFixed(2);
+    }
+  </script>
+</body>
+</html>
