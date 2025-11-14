@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Delete Employee Info</title>
+  <title>Delete Student</title>
   <style>
     body{text-align:center;font-family:Arial}
     .box{
-      width:300px;margin:70px auto;padding:15px;
+      width:300px;margin:60px auto;padding:15px;
       border:2px solid #000;background:lightcoral
     }
     input{width:90%;margin:5px;padding:5px}
@@ -13,33 +14,31 @@
 </head>
 <body>
   <div class="box">
-    <h3>Delete Employee Info</h3>
+    <h3>Delete Student Info</h3>
     <form action="delete.php" method="post">
-      Employee ID:<br>
-      <input type="text" name="empid" required><br><br>
+      Student ID:<br>
+      <input type="text" name="sid" required><br><br>
       <input type="submit" value="Delete">
     </form>
   </div>
 </body>
 </html>
 
+
 <?php
-$id = $_POST["empid"];
+$conn = mysqli_connect("localhost","root","","student_db") or die("DB Error");
 
-$conn = mysqli_connect("localhost", "root", "", "employee_db");
+$id = $_POST['sid'];
 
-if(!$conn){
-    die("Connection error: " . mysqli_connect_error());
-}
+$q = "DELETE FROM students WHERE sid='$id'";
 
-$sql = "DELETE FROM employee_info WHERE employee_id='$id'";
-
-if(mysqli_query($conn, $sql) && mysqli_affected_rows($conn) > 0){
-    echo "<center><h1>Employee Record Deleted</h1></center>";
+if(mysqli_query($conn,$q) && mysqli_affected_rows($conn) > 0){
+    echo "<center><h2>Record Deleted</h2></center>";
 }
 else{
-    echo "<center><h1>No Record Found</h1></center>";
+    echo "<center><h2>No Record Found</h2></center>";
 }
 
-$conn->close();
+mysqli_close($conn);
 ?>
+
