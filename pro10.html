@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,25 +25,21 @@
 </html>
 
 
-PHP
-
 <?php
-$conn = mysqli_connect("localhost","root","","student_db");
-if(!$conn) die("Connection failed");
+$conn = mysqli_connect("localhost","root","","student_db") or die("DB Error");
 
-$sid=$_POST['sid'];
-$sname=$_POST['sname'];
-$reg=$_POST['reg'];
-$course=$_POST['course'];
-$uni=$_POST['uni'];
+$sid  = $_POST['sid'];
+$sn   = $_POST['sname'];
+$reg  = $_POST['regno'];
+$crs  = $_POST['crs'];
+$uni  = $_POST['uni'];
 
-$q="INSERT INTO students(student_id,student_name,register_no,course,university)
-    VALUES('$sid','$sname','$reg','$course','$uni')";
+$sql = "INSERT INTO students(sid, sname, regno, crs, uni)
+        VALUES('$sid','$sn','$reg','$crs','$uni')";
 
-if(mysqli_query($conn,$q))
-  echo "<center><h3>Record Saved Successfully!</h3></center>";
-else
-  echo "Error: ".mysqli_error($conn);
+echo mysqli_query($conn,$sql)
+     ? "<center><h3>Record Saved!</h3></center>"
+     : "Error: ".mysqli_error($conn);
 
 mysqli_close($conn);
 ?>
