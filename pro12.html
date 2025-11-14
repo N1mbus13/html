@@ -5,10 +5,7 @@
   <title>Update Employee Info</title>
   <style>
     body{text-align:center;font-family:Arial}
-    .box{
-      width:300px;margin:70px auto;padding:15px;
-      border:2px solid #000;background:lightgrey
-    }
+    .box{width:300px;margin:70px auto;padding:15px;border:2px solid #000;background:lightgrey}
     input{width:90%;margin:5px;padding:5px}
   </style>
 </head>
@@ -16,19 +13,12 @@
   <div class="box">
     <h3>Update Employee Info</h3>
     <form action="update.php" method="post">
-
       Employee ID:<br>
-      <input type="text" name="empid" required><br>
-
-      Employee Name:<br>
-      <input type="text" name="empname" required><br>
-
-      Designation:<br>
-      <input type="text" name="empdesig"><br>
-
-      Salary:<br>
-      <input type="text" name="empsal"><br><br>
-
+      <input type="text" name="eid" required><br>
+      New Designation:<br>
+      <input type="text" name="designation"><br>
+      New Salary:<br>
+      <input type="text" name="salary"><br><br>
       <input type="submit" value="Update">
     </form>
   </div>
